@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InternLens — See the opportunity before you apply</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Arial, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        header {
+            background: #0f172a;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .header-tag {
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 55px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 760px;
+            margin: auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 46px;
+            line-height: 1.1;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            color: #64748b;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 35px;
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 220px;
+            resize: vertical;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 17px;
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #475569;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .analyze {
+            flex: 1;
+            background: #0f172a;
+            color: white;
+        }
+
+        .example {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #loading {
+            display: none;
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+
+        #result {
+            display: none;
+            margin-top: 35px;
+        }
+
+        .risk-card {
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 18px;
+        }
+
+        .risk-high {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+        }
+
+        .risk-medium {
+            background: #fef3c7;
+            border: 1px solid #fde68a;
+        }
+
+        .risk-low {
+            background: #dcfce7;
+            border: 1px solid #bbf7d0;
+        }
+
+        .risk-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .risk-value {
+            font-size: 30px;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 22px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.06);
+        }
+
+        .section h3 {
+            margin-top: 0;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .summary {
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        .disclaimer {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 18px 20px;
+            }
+
+            .header-tag {
+                display: none;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .example {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🔍 InternLens</div>
+    <div class="header-tag">See the opportunity before you apply.</div>
+</header>
+
+
+<main>
+
+    <section class="hero">
+
+        <div class="badge">
+            🛡️ Internship Safety & Opportunity Analyzer
+        </div>
+
+        <h1>
+            Before you apply,<br>
+            know what you're getting into.
+        </h1>
+
+        <p>
+            Paste an internship listing and InternLens will identify
+            potential risk signals, learning opportunities, and missing
+            information.
+        </p>
+
+    </section>
+
+
+    <section class="card">
+
+        <textarea
+            id="internship"
+            placeholder="Paste an internship description here...
+
+Example:
+Software Development Intern
+3 months
+Unpaid
+Work on real projects with a senior developer..."
+        ></textarea>
+
+        <div class="actions">
+
+            <button
+                class="example"
+                onclick="loadExample()">
+                Try Example
+            </button>
+
+            <button
+                class="analyze"
+                onclick="analyzeInternship()">
+                🔎 Analyze Internship
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <div id="loading">
+        🔎 InternLens is analyzing the opportunity...
+    </div>
+
+
+    <section id="result">
+
+        <div id="riskCard" class="risk-card">
+
+            <div class="risk-label">
+                Potential Risk Level
+            </div>
+
+            <div
+                id="riskLevel"
+                class="risk-value">
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="section">
+
+                <h3>🚨 Risk Signals</h3>
+
+                <ul id="riskSignals"></ul>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>💡 Opportunity Signals</h3>
+
+                <ul id="opportunitySignals"></ul>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>⚠️ Missing Information</h3>
+
+                <ul id="missingInformation"></ul>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>❓ Questions to Ask</h3>
+
+                <ul id="questions"></ul>
+
+            </div>
+
+
+            <div class="section full">
+
+                <h3>🛡️ Safe Next Steps</h3>
+
+                <ul id="safeSteps"></ul>
+
+            </div>
+
+
+            <div class="section full">
+
+                <h3>📋 Analysis Summary</h3>
+
+                <p
+                    id="summary"
+                    class="summary">
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="disclaimer">
+
+            ⚠️ <strong>Important:</strong>
+            InternLens identifies potential warning signs based on
+            the information provided. It does not determine whether
+            an organization is definitively fraudulent. Always verify
+            important claims independently before sharing information,
+            paying money, or accepting an internship.
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    InternLens · Built for students · Hackathon MVP
+</footer>
+
+
+<script>
+
+function loadExample() {
+    document.getElementById("internship").value =
+`Software Development Internship
+
+Duration: 3 months.
+Location: Hyderabad, hybrid.
+
+Work on web development projects and receive an internship certificate.
+
+To secure your internship seat, selected candidates must pay a refundable registration fee of ₹2,999 before joining.
+
+Limited seats available. Apply immediately.`;
+}
+
+async function analyzeInternship() {
+    const internship = document.getElementById("internship").value;
+    const loading = document.getElementById("loading");
+    const resultBox = document.getElementById("result");
+    const errorBox = document.getElementById("errorBox");
+    const analyzeBtn = document.getElementById("analyzeBtn");
+
+    if (!internship.trim()) {
+        showError("Please paste an internship listing first.");
+        return;
+    }
+
+    errorBox.style.display = "none";
+    loading.style.display = "block";
+    resultBox.style.display = "none";
+    analyzeBtn.disabled = true;
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/analyze", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ internship })
+        });
+
+        const raw = await response.text();
+        let data;
+
+        try {
+            data = JSON.parse(raw);
+        } catch (parseError) {
+            throw new Error("The backend returned an invalid response.");
+        }
+
+        if (!response.ok) {
+            throw new Error(data.details || data.error || "Analysis failed.");
+        }
+
+        // Supports both the current response and older wrapped responses.
+        const analysis = data.analysis || data;
+
+        const riskLevel = String(analysis.risk_level || "LOW").toUpperCase();
+        const riskCard = document.getElementById("riskCard");
+        riskCard.className = "risk-card";
+
+        if (riskLevel === "HIGH") {
+            riskCard.classList.add("risk-high");
+        } else if (riskLevel === "MEDIUM") {
+            riskCard.classList.add("risk-medium");
+        } else {
+            riskCard.classList.add("risk-low");
+        }
+
+        document.getElementById("riskLevel").textContent = riskLevel;
+
+        fillList("riskSignals", analysis.risk_signals, "No obvious risk signals detected.");
+        fillList("opportunitySignals", analysis.opportunity_signals, "No specific opportunity signals detected.");
+        fillList("missingInformation", analysis.missing_information, "No major missing information identified.");
+        fillList("questions", analysis.questions_to_ask, "No additional questions generated.");
+        fillList("safeSteps", analysis.safe_next_steps, "No additional next steps generated.");
+
+        document.getElementById("summary").textContent =
+            analysis.summary || "Analysis completed.";
+
+        loading.style.display = "none";
+        resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: "smooth" });
+
+    } catch (error) {
+        console.error("InternLens error:", error);
+        loading.style.display = "none";
+        resultBox.style.display = "none";
+        showError(
+            "Could not analyze the listing. Make sure Flask is running on port 5000. " +
+            (error.message ? "Details: " + error.message : "")
+        );
+    } finally {
+        analyzeBtn.disabled = false;
+    }
+}
+
+function showError(message) {
+    const errorBox = document.getElementById("errorBox");
+    errorBox.textContent = message;
+    errorBox.style.display = "block";
+}
+
+function fillList(elementId, items, emptyMessage) {
+    const list = document.getElementById(elementId);
+    list.innerHTML = "";
+
+    const safeItems = Array.isArray(items)
+        ? items.filter(item => typeof item === "string" && item.trim())
+        : [];
+
+    if (safeItems.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = emptyMessage;
+        list.appendChild(li);
+        return;
+    }
+
+    safeItems.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+    });
+}
+
+</script>
+
+</body>
+</html>
