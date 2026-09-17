@@ -8,7 +8,12 @@ from strands.models.ollama import OllamaModel
 MODEL_NAME = "llama3.2:3b"
 OLLAMA_HOST = "http://localhost:11434"
 
-model = OllamaModel(host=OLLAMA_HOST, model_id=MODEL_NAME)
+model = OllamaModel(
+    host=OLLAMA_HOST,
+    model_id=MODEL_NAME,
+    max_tokens=80,
+    keep_alive="10m"
+)
 agent = Agent(model=model)
 
 
