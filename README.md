@@ -237,9 +237,9 @@ InternLens/
 ├── frontend/
 │   └── index.html
 |
-├── requirements.txt
+├── DEMO_SCRIPT.md
 └── README.md
-└── DEMO_SCRIPT.md
+└── requirements.txt
 
 ## Running Locally
 
