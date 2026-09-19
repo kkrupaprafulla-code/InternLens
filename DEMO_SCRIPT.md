@@ -1,45 +1,210 @@
-# InternLens — 3-Minute Demo Script
+# InternLens Demo Script
 
-## 0:00–0:20 — Problem
+## Demo Video
 
-"Students are constantly told to find internships, but one question is often overlooked: how do you know what deserves closer scrutiny before you apply?"
+https://youtu.be/KXlVnhfjPVQ
 
-## 0:20–0:35 — Product
+## Duration
 
-"InternLens is an AI-assisted internship analyzer that identifies potential risk signals, career-value signals, missing information, and questions to ask."
+Approximately 2 minutes 52 seconds.
 
-## 0:35–1:10 — Potential warning example
+## Project
 
-Paste the tested suspicious example and click Analyze.
+InternLens — Internship Safety & Opportunity Analyzer
 
-Say:
+## Demo Objective
 
-"Here, InternLens identifies an upfront payment request and urgency language. It doesn't simply call the internship a scam. It shows the evidence, highlights missing information, and gives the student concrete verification steps."
+This demo shows how InternLens helps students review internship listings before applying.
 
-## 1:10–1:45 — Career-value example
+It demonstrates:
 
-Paste the tested software-engineering example and click Analyze.
+- The problem InternLens addresses
+- The application workflow
+- Risk and opportunity analysis
+- Missing information
+- Questions and safe next steps
+- The AI-generated summary
+- The technology stack and architecture
+- How AWS Strands Agents SDK is used
 
-Say:
+---
 
-"The system also works in the other direction. When a listing provides concrete signals like technical work, GitHub collaboration, code reviews, mentorship, duration, and compensation, those are surfaced as opportunity signals."
+# Demo Flow
 
-## 1:45–2:20 — Architecture
+## 1. Introduction
 
-Show the code.
+**What to say:**
 
-Say:
+"InternLens is an internship safety and opportunity analyzer built to help students review internship listings before applying.
 
-"InternLens uses a hybrid architecture. Python performs the evidence-based structured analysis, while an agent built with the AWS Strands Agents SDK uses a locally running Llama model through Ollama to generate a concise factual summary."
+Students often have to judge whether an internship opportunity provides real career value while also checking for warning signs and missing information."
 
-## 2:20–2:40 — AWS
+---
 
-Say:
+## 2. Show the Application
 
-"For the Build It track, we use the AWS Strands Agents SDK with a local model, allowing the application to be developed and demonstrated locally without requiring an AWS account."
+**What to say:**
 
-## 2:40–3:00 — Impact
+"With InternLens, a student can paste an internship listing into the application and analyze it."
 
-Say:
+Show the InternLens interface and the internship listing input.
 
-"The goal isn't to decide for the student. It's to help them notice warning signs, recognize valuable opportunities, ask better questions, and verify important details before they apply. InternLens — see the opportunity before you apply."
+---
+
+## 3. Analyze an Internship
+
+**What to say:**
+
+"The application analyzes the listing and separates the results into potential risk signals, opportunity signals, missing information, questions to ask, and safe next steps."
+
+Click the Analyze button and show the generated results.
+
+---
+
+## 4. Explain the Results
+
+**What to say:**
+
+"For example, the application can identify signals such as upfront payment requests or urgency.
+
+It can also highlight positive career indicators such as technical work, mentorship, project experience, code reviews, and compensation.
+
+Instead of declaring an internship a scam, InternLens shows the evidence and missing information so the student can investigate further."
+
+Show the risk, opportunity, missing information, questions, and safe next-step sections.
+
+---
+
+## 5. AI Summary
+
+**What to say:**
+
+"The structured analysis is handled using deterministic Python logic.
+
+An AWS Strands Agent is then used to generate a concise natural-language summary of the results."
+
+Show the AI-generated summary.
+
+---
+
+## 6. Technology and Architecture
+
+**What to say:**
+
+"The frontend uses HTML, CSS, and JavaScript.
+
+The backend is built with Python and Flask.
+
+For the AI workflow, I use the AWS Strands Agents SDK with the Ollama model provider and a locally running Llama 3.2 3B model."
+
+Show the relevant architecture or project files if included in the demo.
+
+---
+
+## 7. AWS Usage
+
+**What to say:**
+
+"The project uses the AWS Strands Agents SDK as its AWS open-source technology for the Build It track.
+
+The Strands Agent connects the structured analysis with the local Llama 3.2 model to produce the final concise AI summary."
+
+---
+
+## 8. Responsible AI
+
+**What to say:**
+
+"InternLens is designed as a decision-support tool.
+
+A risk signal is not treated as proof of fraud, and the application does not make the final decision for the student."
+
+---
+
+## 9. Closing
+
+**What to say:**
+
+"InternLens helps students understand what deserves attention in an internship listing before they apply, while keeping the final decision with the student."
+
+---
+
+# Technical Stack
+
+## Frontend
+
+- HTML
+- CSS
+- JavaScript
+
+## Backend
+
+- Python
+- Flask
+- Flask-CORS
+
+## AI
+
+- AWS Strands Agents SDK
+- Ollama
+- Llama 3.2 3B
+
+## Development
+
+- Git
+- GitHub
+- Python virtual environment
+- PowerShell
+
+---
+
+# Architecture
+
+```text
+Student
+   |
+   v
+Internship Listing
+   |
+   v
+HTML / CSS / JavaScript
+   |
+   v
+Python / Flask API
+   |
+   +----------------------+
+   |                      |
+   v                      v
+Deterministic          AWS Strands
+Python Analysis        Agent
+   |                      |
+   |                      v
+   |                  Ollama
+   |                      |
+   |                      v
+   |                 Llama 3.2 3B
+   |                      |
+   +----------+-----------+
+              |
+              v
+       Structured Results
+              +
+         AI Summary
+         
+      
+---
+
+# Learning
+
+Building InternLens helped me learn:
+
+- How to integrate the AWS Strands Agents SDK into a Python application
+- How to connect an agent to a local model provider
+- How to use Ollama with Llama 3.2
+- How to combine deterministic application logic with generative AI
+- How to connect a Flask backend with a browser frontend
+- How to design AI-assisted decision-support workflows
+- How to handle loading and error states in an AI application
+- How to document and present an AI project
+
+---
