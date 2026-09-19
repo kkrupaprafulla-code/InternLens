@@ -239,6 +239,7 @@ InternLens/
 |
 ├── requirements.txt
 └── README.md
+└── DEMO_SCRIPT.md
 
 ## Running Locally
 
